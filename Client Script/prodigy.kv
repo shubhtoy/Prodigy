@@ -1,0 +1,213 @@
+<ContentNavigationDrawer>:
+    orientation: 'vertical'
+    padding: "8dp"
+    spacing: "8dp"
+    Image:
+        id: avatar
+        size_hint: (1,1)
+        source: "mine.png"
+    MDLabel:
+        text: "Shubh Mittal"
+        font_style: "Subtitle1"
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_dark
+        # 0/256, 181/256, 204/256, 1
+        size_hint_y: None
+        height: self.texture_size[1]
+    MDLabel:
+        text: "shubhmittal.sm@gmail.com"
+        size_hint_y: None
+        theme_text_color: "Custom"
+        text_color:app.theme_cls.primary_dark
+        font_style: "Caption"
+        height: self.texture_size[1]
+    ScrollView:
+
+        MDList:
+            OneLineIconListItem:
+                text: "Register"
+                on_press:
+                    root.register()
+                    #root.screen_manager.current = "scr 2"
+                IconLeftWidget:
+                    icon:'account'
+            OneLineIconListItem:
+                text: "Login"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "login_screen"
+                IconLeftWidget:
+                    icon:'login'
+
+            OneLineIconListItem:
+                text: "Tasks"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "scr 2"
+                IconLeftWidget:
+                    icon:'infinity'
+            
+
+<Mainscreen>:
+    size_hint_x:1
+    size_hint_y:1  
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        title:'Prodigy'
+        halign:'center'
+        elevation: 10
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+        MDProgressBar:
+            id:bar2
+            color:[1,0,0,1]
+            pos_hint: {"center_x": .5, "center_y": .45}
+            type: "indeterminate"
+
+    NavigationLayout:
+        x: toolbar.height
+
+        ScreenManager:
+            id: screen_manager
+
+            Screen:
+                name: "login_screen"
+                id:sc1
+                MDTextField:
+                    id:username
+                    pos_hint:{'center_x': 0.5, 'center_y': 0.55}
+                    hint_text: "Enter Username"
+                    helper_text:"Invalid Username"
+                    hiny_text_color:[1,1,1,1]
+                    required: True
+                    # rgba(0, 230, 64, 1)
+                    # mode:'rectangle'
+                    size_hint_x:0.5
+                    active_line:True
+                    line_color_normal:[1,1,1,1]
+                    # width:300
+                    helper_text_mode:'on_error'
+                    color_mode: 'custom'
+                    on_text_validate:passw.focus=True
+                    line_color_focus: 0/256, 230/256, 64/256, 1
+                MDTextField:
+                    id:passw
+                    pos_hint:{'center_x': 0.5, 'center_y': 0.45}
+                    hint_text: "Enter Password"
+                    helper_text:"Invalid Password"
+                    hiny_text_color:[1,1,1,1]
+                    required: True
+                    password:True
+                    on_text_validate:root.login()
+                    # rgba(0, 230, 64, 1)
+                    # mode:'rectangle'
+                    size_hint_x:0.5
+                    # active_line:True
+                    line_color_normal:[1,1,1,1]
+                    # width:300
+                    helper_text_mode:'on_error'
+                    color_mode: 'custom'
+                    line_color_focus: 0/256, 230/256, 64/256, 1  
+                MDBottomAppBar:
+                    MDToolbar:
+                        title: "Signin"
+                        elevation:10
+                        icon: "play"
+                        round:'50dp'
+                        type: "bottom"
+                        # icon_color:[256,0,0]
+                        mode:'free-end'
+                        # left_action_items: [["menu", lambda x: x]]
+                        on_action_button: root.login()
+                        # root.state = "stop" if root.state == "start" else "start"
+                        MDProgressBar:
+                            id:bar
+                            color:[1,0,0,1]
+                            pos_hint: {"center_x": .5, "center_y": .45}
+                            type: "indeterminate"
+
+            Screen:
+                name: "scr 2"
+                id:sc2
+                MDFloatingActionButtonSpeedDial:
+                    callback: root.callback
+                    data:app.data
+                    bg_hint_color: app.theme_cls.primary_darkest
+                    id:but
+                    label_text_color:[1,1,1,1]
+                    hint_animation: True
+                    bg_hint_color:[0,0,0,1]
+                    bg_color_root_button:[41/256,241/256,195/256,1]
+                MDTextField:
+                    pos_hint:{'top':(0.85-toolbar.height/root.height),'center_x':0.5}
+                    size_hint_x:0.8
+                    id:email
+                    helper_text: "Your Email Id"
+                    helper_text_mode: "on_focus"
+                    required: True
+                    mode: "rectangle"
+                MDTextField:
+                    pos_hint:{'top':(0.7-toolbar.height/root.height),'center_x':0.5}
+                    size_hint_x:0.8
+                    helper_text: "Your Insta Id"
+                    helper_text_mode: "on_focus"
+                    required: True
+                    id:insta
+                    mode: "rectangle"
+                MDTextField:
+                    pos_hint:{'top':(0.55-toolbar.height/root.height),'center_x':0.5}
+                    size_hint_x:0.8
+                    helper_text: "Your Facebook Id"
+                    helper_text_mode: "on_focus"
+                    mode: "rectangle"
+                    required: True
+                    id:fb
+                MDTextField:
+                    pos_hint:{'top':(0.4-toolbar.height/root.height),'center_x':0.5}
+                    size_hint_x:0.8
+                    helper_text: "Your Password"
+                    helper_text_mode: "on_focus"
+                    mode: "rectangle"
+                    password:True
+                    required: True
+                    id:passwd_
+                MDRectangleFlatButton:
+                    pos_hint:{'top':(0.3-toolbar.height/root.height),'center_x':0.5}
+                    # size_hint_x:0.8
+                    text:'Submit Changes'
+                    on_release:root.change_data()
+            Screen:
+                name:'data entry'
+                MDTextField:
+                    id:task
+                    pos_hint:{'center_x': 0.5, 'center_y': 0.55}
+                    hint_text: "Enter Task"
+                    helper_text:"Invalid Task"
+                    hiny_text_color:[1,1,1,1]
+                    helper_text_mode:'on_error'
+                    required: True
+                    icon:'note-outline'
+                    # rgba(0, 230, 64, 1)
+                    mode:'rectangle'
+                    on_text_validate:root.grabtask()
+                    # line_color_normal: [1,1,0,1]
+                    size_hint_x:0.8
+                    # on_text: root.set_list_md_icons(self.text, True)
+                MDBottomAppBar:
+                    MDToolbar:
+                        title: "Enter Task"
+                        elevation:10
+                        icon: "play"
+                        round:'50dp'
+                        type: "bottom"
+                        # icon_color:[256,0,0]
+                        mode:'free-end'
+                        # left_action_items: [["menu", lambda x: x]]
+                        on_action_button: root.grabtask()
+                        # root.state = "stop" if root.state == "start" else "start"
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Prodigy</title>
+
+    <link rel="icon" href="Prodigy.ico" type="image/icon type">
+
+    <style>
+        body {
+            background: #040404;
+        }
+
+        .tb {
+            width: 25%;
+            height: 35px;
+            margin-left: 37.5%;
+            text-align: center;
+            margin-bottom: 15px;
+            background: #040404;
+            border-style: solid;
+            border-color: #ffde59;
+            border-radius: 5px;
+            color: #ffde59;
+            transition: 0.25s;
+        }
+
+        .btn {
+            width: 25.75%;
+            height: 40px;
+            margin-left: 37.5%;
+            text-align: center;
+            background: #ffde59;
+            color: #040404;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 5px;
+            transition: 0.25s;
+        }
+
+        .btn:hover {
+            width: 26.25%;
+            height: 42px;
+            margin-left: 37.25%;
+            color: #ffde59;
+            background: #040404;
+        }
+
+        .form-container {
+            margin-top: 12.5%;
+        }
+
+        .input_1:hover {
+            width: 26%;
+            margin-left: 37%;
+            height: 37px;
+        }
+
+        .img {
+            width: 10%;
+            position: fixed;
+            bottom: 10px;
+            left: 89%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <form name="form" method="POST" action="./html-connect.php">
+            <input type="text" name="tb_name" placeholder="Your Name" id="tb_name" class="tb input_1" required>
+            <input type="text" name="tb_email" placeholder="Your Email" id="tb_email" class="tb input_1" required>
+            <input type="text" name="tb_instagram" placeholder="Your Instagram Username" id="tb_instagram"
+                class="tb input_1" required>
+            <input type="text" name="tb_facebook" placeholder="Your Facebook Username" id="tb_facebook"
+                class="tb input_1" required>
+            <input type="password" name="password" placeholder="Your Password" id="password" class="tb input_1"
+                required>
+            <br>
+            <input type="submit" name="submit-btn" value="Submit" id="submit-btn" class="btn">
+        </form>
+    </div>
+    <img src="Prodigy.png" class="img">
+</body>
+
+</html>

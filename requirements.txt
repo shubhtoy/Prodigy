@@ -1,0 +1,7 @@
+python3,
+kivy==1.11.1,
+https://github.com/kivymd/KivyMD/archive/master.zip,(0.104.2.dev0)
+mysql.connector,
+pandas,
+selenium
+yagmail
